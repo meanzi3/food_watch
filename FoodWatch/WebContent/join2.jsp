@@ -28,7 +28,6 @@
             height: 100vh;
             background: transparent; /* 배경을 투명으로 설정하여 회색 박스를 없앰 */
             margin: 0px 0px;
-            padding: 0px 0px;
         }
 
         .info_box {
@@ -103,6 +102,9 @@
             color: #FFFFFF;
             text-decoration: none;
         }
+        .navbar_member a:hover{
+        	color: black;
+        }
 
         .footer {
         position: fixed;
@@ -162,7 +164,7 @@
     	</div>
 		<form action="./userJoinAction.jsp?userType=<%=userType %>" method="post">
 			<div style="display:flex; flex-direction:row; justify-content:center; border-top: 5px solid black; width:800px; height:350px; margin: 0 auto; margin-bottom:10px; background-color:white;">
-    			<ul style="list-style-type:none; text-align:center; display: flex; flex-direction: column; justify-content: space-between; flex-wrap:wrap; font-size:20px">
+    			<ul style="list-style-type:none; display: flex; flex-direction: column; justify-content: space-between; flex-wrap:wrap; font-size:20px">
     				<li>이름</li>
     				<li>아이디</li>
     				<li>비밀번호</li>

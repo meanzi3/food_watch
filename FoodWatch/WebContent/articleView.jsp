@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="article.ArticleDAO" %>
 <%@ page import="article.ArticleBean" %>
+<%@ page import="user.UserBean" %>
+<%@ page import="user.UserDAO" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.io.PrintWriter" %>
 <!doctype html>
@@ -105,6 +107,9 @@
             color: #FFFFFF;
             text-decoration: none;
         }
+        .navbar_member a:hover{
+        	color: black;
+        }
 
         .footer {
         position: fixed;
@@ -134,6 +139,8 @@
 	if(session.getAttribute("userID") != null){
 		userID = (String) session.getAttribute("userID"); //로그인을 한 상태라면 해당 세션의 값을 userID에 넣어줌.
 	}
+	UserBean userBean = new UserDAO().getUser(userID); // 세션에 저장된 정보로 회원 정보 찾기
+	
 	if(userID == null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -172,7 +179,19 @@
 			<%
 				} else { //로그인을 한 상태라면 logout 메뉴가 뜨도록
 			%>
-			<li><%= userID %>님</li>
+<%
+			if(userBean.getUserType() == 1){
+				// 기업회원이라면
+%>
+				<li><a href="#"><%= userID %>님 (기업)</a></li>
+<%
+			}else{
+				// 개인회원이라면
+%>
+				<li><a href="#"><%= userID %>님 (개인)</a></li>
+<%				
+			}
+%>
 			<li><a onclick="return confirm('로그아웃 하시겠습니까?')" href="logout.jsp">Logout</a></li>
 			<%
 				}

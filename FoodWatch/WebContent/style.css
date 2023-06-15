@@ -57,7 +57,7 @@ a {
 	border-radius: 4px;
 }
 .navbar_member li >p:hover{
-	background-color:  #d2d6ec;
+	background-color: black;
 }
 .container{
 	display:flex;
@@ -231,17 +231,11 @@ a {
 }
 
 .joinInput {
-	border-bottom: 2px solid #808080;
-	margin: 30px;
-	padding: 10px 10px;
-}
-
-.email {
 	width: 100%;
 	border: none;
 	outline: none;
 	color: #afafaf;
-	font-size: 18px;
+	font-size: 20px;
 	height: 25px;
 	background: none;
 }

@@ -29,7 +29,6 @@
             height: 100vh;
             background: transparent; /* 배경을 투명으로 설정하여 회색 박스를 없앰 */
             margin: 0px 0px;
-            padding: 0px 0px;
         }
 
         .info_box {
@@ -103,6 +102,9 @@
         .navbar_member a {
             color: #FFFFFF;
             text-decoration: none;
+        }
+        .navbar_member a:hover{
+        	color: black;
         }
 
         .footer {

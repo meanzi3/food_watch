@@ -108,6 +108,9 @@
             color: #FFFFFF;
             text-decoration: none;
         }
+        .navbar_member a:hover{
+        	color: black;
+        }
 
         .footer {
         position: fixed;
@@ -148,7 +151,7 @@
 	if(userBean.getUserType() != 1){ // 기업회원이 아니라면
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('일반회원은 글을 작성할 수 없습니다.')");
+		script.println("alert('개인회원은 글을 작성할 수 없습니다.')");
 		script.println("location.href='articleList.jsp'");
 		script.println("</script>");
 	}
@@ -169,7 +172,19 @@
 			<%
 				} else { //로그인을 한 상태라면 logout 메뉴가 뜨도록
 			%>
-			<li><%= userID %>님</li>
+<%
+			if(userBean.getUserType() == 1){
+				// 기업회원이라면
+%>
+				<li><a href="#"><%= userID %>님 (기업)</a></li>
+<%
+			}else{
+				// 개인회원이라면
+%>
+				<li><a href="#"><%= userID %>님 (개인)</a></li>
+<%				
+			}
+%>
 			<li><a onclick="return confirm('로그아웃 하시겠습니까?')" href="logout.jsp">Logout</a></li>
 			<%
 				}

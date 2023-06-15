@@ -103,6 +103,9 @@
             color: #FFFFFF;
             text-decoration: none;
         }
+        .navbar_member a:hover{
+        	color: black;
+        }
 
         .footer {
         position: fixed;
