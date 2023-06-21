@@ -76,7 +76,7 @@
 		
 		//하나라도 입력이 안되었다면            
 		if (category == null || storeName == null || storeAddress == null || price == null 
-				|| newPrice == null || articleTitle == null || articleContent == null || sold == null) {
+				|| newPrice == null || articleTitle == null || articleContent == null || sold == null || fileName == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다.')");

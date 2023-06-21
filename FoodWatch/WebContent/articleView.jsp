@@ -251,18 +251,16 @@
     			</div>
     			<div class="cont">
     				<%= articleBean.getArticleContent() %>
+    				<div class="imgfile" style="display:flex; justify-content:center; background-color:black; margin:30px 0px">
+		    			<img src = "ArticleUpload/<%= articleBean.getFileName()%>" width="50%" height="50%">
+    				</div>
     			</div>
-    			<%
-    			String real = "C:\\Upload";
-    			File viewFile = new File(real+"\\"+articleBean.getFileName());
-    			/* if(viewFile.exists()){ */
-    			%>
-    			<div class="cont">
-    				<img src = "ArticleUpload/<%= articleBean.getFileName()%>" border="10px" width="500px" height="500px">
+    			<div style="margin-top:10px">
+    				<%= articleBean.getStoreName() %>의 위치를 확인하세요!
     			</div>
-    			<%-- <% } %> --%>
     			<!-- 지도 표시 영역 -->
-    			<div id="map" style="width:100%;height:300px;"></div>
+    			<div id="map" style="width:100%;height:300px;margin-top:20px"></div>
+    			
     			<!-- api 관련 스크립트 -->
     			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=633c4c8c96349c69b0554823bf4ba12b&libraries=services"></script>
 				<%
