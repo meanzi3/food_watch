@@ -197,9 +197,25 @@
 							<dt>분류</dt>
 							<dd>
 								<select name="category" style="width:320px;height:35px">
+									<%
+									if(articleBean.getCategory().equals("편의점")){
+									%>
 									<option value="편의점" selected>[ 편의점 ]</option>
 									<option value="마트">[ 마트 ]</option>
 									<option value="빵집">[ 빵집 ]</option>
+									<%
+									} else if(articleBean.getCategory().equals("마트")){
+									%>
+									<option value="편의점">[ 편의점 ]</option>
+									<option value="마트" selected>[ 마트 ]</option>
+									<option value="빵집">[ 빵집 ]</option>
+									<%	
+									} else if(articleBean.getCategory().equals("빵집")){
+									%>
+									<option value="편의점">[ 편의점 ]</option>
+									<option value="마트">[ 마트 ]</option>
+									<option value="빵집" selected>[ 빵집 ]</option>
+									<% } %>
 								</select>
 							</dd>
 						</dl>
