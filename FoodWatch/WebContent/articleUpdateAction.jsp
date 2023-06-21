@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <jsp:useBean id="article" class="article.ArticleBean" />
 <jsp:setProperty property="*" name="article"/>
 <html>																				
@@ -38,9 +42,41 @@
 			script.println("</script>");
 		}
 		
+		String realFolder="";
+		String saveFolder = "ArticleUpload"; 
+		String encType = "utf-8";
+		String map="";
+		int maxSize=5*1024*1024;
+		
+		ServletContext context = this.getServletContext();
+		realFolder = context.getRealPath(saveFolder); 		
+		
+		MultipartRequest multi = null;
+		
+		multi = new MultipartRequest(request,realFolder,maxSize,encType,new DefaultFileRenamePolicy());		
+		String fileName = multi.getFilesystemName("fileName");
+		String category = multi.getParameter("category");
+		String storeName = multi.getParameter("storeName");
+		String storeAddress = multi.getParameter("storeAddress");
+		String price = multi.getParameter("price");
+		String newPrice = multi.getParameter("newPrice");
+		String articleTitle = multi.getParameter("articleTitle");
+		String articleContent = multi.getParameter("articleContent");
+		String sold = multi.getParameter("sold");
+		
+		article.setCategory(category);
+		article.setStoreName(storeName);
+		article.setStoreAddress(storeAddress);
+		article.setPrice(Integer.parseInt(price));
+		article.setNewPrice(Integer.parseInt(newPrice));
+		article.setArticleTitle(articleTitle);
+		article.setArticleContent(articleContent);
+		article.setFileName(fileName);
+		article.setSold(Integer.parseInt(sold));
+		
 		//하나라도 입력이 안되었다면            
-		if (article.getCategory() == null || article.getStoreName() == null || article.getStoreAddress() == null || Integer.toString(article.getPrice()) == null 
-				|| Integer.toString(article.getNewPrice()) == null || article.getArticleTitle() == null || article.getArticleContent() == null) {
+		if (category == null || storeName == null || storeAddress == null || price == null 
+				|| newPrice == null || articleTitle == null || articleContent == null || sold == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다.')");

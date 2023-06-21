@@ -4,6 +4,7 @@
 <%@ page import="article.ArticleBean" %>
 <%@ page import="user.UserBean" %>
 <%@ page import="user.UserDAO" %>
+<%@ page import="java.io.File" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.io.PrintWriter" %>
 <!doctype html>
@@ -251,6 +252,15 @@
     			<div class="cont">
     				<%= articleBean.getArticleContent() %>
     			</div>
+    			<%
+    			String real = "C:\\Upload";
+    			File viewFile = new File(real+"\\"+articleBean.getFileName());
+    			/* if(viewFile.exists()){ */
+    			%>
+    			<div class="cont">
+    				<img src = "ArticleUpload/<%= articleBean.getFileName()%>" border="10px" width="500px" height="500px">
+    			</div>
+    			<%-- <% } %> --%>
     			<!-- 지도 표시 영역 -->
     			<div id="map" style="width:100%;height:300px;"></div>
     			<!-- api 관련 스크립트 -->

@@ -189,7 +189,7 @@
 			<strong>재고 알림 수정하기</strong>
 			<p>세일 판매 할 음식을 적어주세요.</p>
 		</div>
-		<form action="./articleUpdateAction.jsp?articleId=<%=articleId %>" method="post"> <!--  articleUpdateAction 에서 처리 -->
+		<form enctype="multipart/form-data" action="./articleUpdateAction.jsp?articleId=<%=articleId %>" method="post"> <!--  articleUpdateAction 에서 처리 -->
 			<div class="board_write_wrap">
 				<div class="board_write">
 					<div class="title">
@@ -219,6 +219,12 @@
 							<dt>제목</dt>
 							<dd>
 								<input type="text" name="articleTitle" placeholder="유효기한/분류/상품명" value="<%= articleBean.getArticleTitle() %>">
+							</dd>
+						</dl>
+						<dl>
+							<dt>이미지 업로드</dt>
+							<dd>
+								<input type="file" name="fileName">
 							</dd>
 						</dl>
 					</div>
