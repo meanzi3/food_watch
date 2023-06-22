@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="user.UserBean"%>
@@ -11,20 +11,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-	integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-	crossorigin="anonymous">
+   href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+   integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+   crossorigin="anonymous">
 <title>FoodWatch</title>
-	<style>
+   <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('./background.png');
-            background-size: cover;
-            background-position: center;
-            color: #333333;
-            margin: 0;
-            padding: 0;
-        }   
+	        background-repeat: no-repeat;
+	        font-family: 'Arial', sans-serif;
+	        background-image: url('./background.png');
+	        background-size: cover;
+	        background-position: center;
+	        color: #333333;
+	        margin: 0;
+	        padding: 0;
+	        position: relative; /* body 요소에 position 속성 추가 */
+	        min-height: 100vh; /* 전체 화면 높이를 최소한으로 유지 */
+	    }    
               
         .container {
             display: flex;
@@ -109,7 +112,7 @@
             text-decoration: none;
         }
         .navbar_member a:hover{
-        	color: black;
+           color: black;
         }
 
         .footer {
@@ -135,140 +138,140 @@
 
 </head>
 <body>
-	<%
-		String userID = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID"); //로그인을 한 상태라면 해당 세션의 값을 userID에 넣어줌.
-	}
-	if(userID == null){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인이 필요합니다.')");
-		script.println("location.href='login.jsp'");
-		script.println("</script>");
-	}
-	UserBean userBean = new UserDAO().getUser(userID);
-	if(userBean.getUserType() != 1){ // 기업회원이 아니라면
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('개인회원은 글을 작성할 수 없습니다.')");
-		script.println("location.href='articleList.jsp'");
-		script.println("</script>");
-	}
-	%>
-	<nav class="navbar">
+   <%
+      String userID = null;
+   if (session.getAttribute("userID") != null) {
+      userID = (String) session.getAttribute("userID"); //로그인을 한 상태라면 해당 세션의 값을 userID에 넣어줌.
+   }
+   if(userID == null){
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('로그인이 필요합니다.')");
+      script.println("location.href='login.jsp'");
+      script.println("</script>");
+   }
+   UserBean userBean = new UserDAO().getUser(userID);
+   if(userBean.getUserType() != 1){ // 기업회원이 아니라면
+      PrintWriter script = response.getWriter();
+      script.println("<script>");
+      script.println("alert('개인회원은 글을 작성할 수 없습니다.')");
+      script.println("location.href='articleList.jsp'");
+      script.println("</script>");
+   }
+   %>
+   <nav class="navbar">
 
-		<div></div>
-		<div class="navbar_logo">
-			<i class="fas fa-utensils"></i> <a href="index.jsp">FoodWatch</a>
-		</div>
+      <div></div>
+      <div class="navbar_logo">
+         <i class="fas fa-utensils"></i> <a href="index.jsp">FoodWatch</a>
+      </div>
 
-		<ul class="navbar_member">
-			<%
-				if (userID == null) { //아직 로그인 하지 않은 상태라면 login과 join메뉴가 뜨도록
-			%>
-			<li><a href="login.jsp">Login</a></li>
-			<li><a href="join1.jsp">Join</a></li>
-			<%
-				} else { //로그인을 한 상태라면 logout 메뉴가 뜨도록
-			%>
+      <ul class="navbar_member">
+         <%
+            if (userID == null) { //아직 로그인 하지 않은 상태라면 login과 join메뉴가 뜨도록
+         %>
+         <li><a href="login.jsp">Login</a></li>
+         <li><a href="join1.jsp">Join</a></li>
+         <%
+            } else { //로그인을 한 상태라면 logout 메뉴가 뜨도록
+         %>
 <%
-			if(userBean.getUserType() == 1){
-				// 기업회원이라면
+         if(userBean.getUserType() == 1){
+            // 기업회원이라면
 %>
-				<li><a href="#"><%= userID %>님 (기업)</a></li>
+            <li><a href="#"><%= userID %>님 (기업)</a></li>
 <%
-			}else{
-				// 개인회원이라면
+         }else{
+            // 개인회원이라면
 %>
-				<li><a href="#"><%= userID %>님 (개인)</a></li>
-<%				
-			}
+            <li><a href="#"><%= userID %>님 (개인)</a></li>
+<%            
+         }
 %>
-			<li><a onclick="return confirm('로그아웃 하시겠습니까?')" href="logout.jsp">Logout</a></li>
-			<%
-				}
-			%>
-		</ul>
+         <li><a onclick="return confirm('로그아웃 하시겠습니까?')" href="logout.jsp">Logout</a></li>
+         <%
+            }
+         %>
+      </ul>
 
-	</nav>
-	<div class="board_wrap">
-		<div class="board_title">
-			<strong>재고 알림 글쓰기</strong>
-			<p>세일 판매 할 음식을 적어주세요.</p>
-		</div>
-		<form enctype="multipart/form-data" action="./articleWriteAction.jsp" method="post"> <!--  articleWrtieAction 에서 처리 -->
-			<div class="board_write_wrap">
-				<div class="board_write">
-					<div class="title">
-						<dl>
-							<dt>분류</dt>
-							<dd>
-								<select name="category" style="width:320px;height:35px">
-									<option value="편의점" selected>[ 편의점 ]</option>
-									<option value="마트" selected>[ 마트 ]</option>
-									<option value="빵집" selected>[ 빵집 ]</option>
-								</select>
-							</dd>
-						</dl>
-						
-						<dl>
-							<dt>상호명</dt>
-							<dd>
-								<input type="text" name="storeName" placeholder="상호명 입력">
-							</dd>
-						</dl>
-						<dl>
-							<dt>주소</dt>
-							<dd>
-								<input type="text" name="storeAddress" placeholder="주소 입력">
-							</dd>
-						</dl>
-						
-						<dl>
-							<dt>제목</dt>
-							<dd>
-								<input type="text" name="articleTitle" placeholder="유효기한/분류/상품명">
-							</dd>
-						</dl>
-						
-						<dl>
-							<dt>이미지 업로드</dt>
-							<dd>
-								<input type="file" name="fileName">
-							</dd>
-						</dl>
-						
-					</div>
-					<div class="info">
-						<dl>
-							<dt>정가</dt>
-							<dd>
-								<input type="text" name="price" placeholder="정가 입력">
-							</dd>
-						</dl>
-						<dl>
-							<dt>할인 금액</dt>
-							<dd>
-								<input type="text" name="newPrice" placeholder="할인 금액">
-							</dd>
-						</dl>
-					</div>
-					<div class="cont">
-						<textarea name="articleContent" placeholder="상품 소개"></textarea>
-					</div>
-					<div class="reviewBtn" style="margin-bottom: 10px;">
-						<button type="submit" class="registerBtn">등록</button>
-						<button type="reset" class="cancelBtn">취소</button>
-					</div>
-				</div>
-			</div>
-			<div class="bt_wrap"></div>
-		</form>
-	</div>
-	
-	<!--  
-	<footer class="footer">
+   </nav>
+   <div class="board_wrap">
+      <div class="board_title">
+         <strong>재고 알림 글쓰기</strong>
+         <p>세일 판매 할 음식을 적어주세요.</p>
+      </div>
+      <form enctype="multipart/form-data" action="./articleWriteAction.jsp" method="post"> <!--  articleWrtieAction 에서 처리 -->
+         <div class="board_write_wrap">
+            <div class="board_write">
+               <div class="title">
+                  <dl>
+                     <dt>분류</dt>
+                     <dd>
+                        <select name="category" style="width:320px;height:35px">
+                           <option value="편의점" selected>[ 편의점 ]</option>
+                           <option value="마트" selected>[ 마트 ]</option>
+                           <option value="빵집" selected>[ 빵집 ]</option>
+                        </select>
+                     </dd>
+                  </dl>
+                  
+                  <dl>
+                     <dt>상호명</dt>
+                     <dd>
+                        <input type="text" name="storeName" placeholder="상호명 입력">
+                     </dd>
+                  </dl>
+                  <dl>
+                     <dt>주소</dt>
+                     <dd>
+                        <input type="text" name="storeAddress" placeholder="주소 입력">
+                     </dd>
+                  </dl>
+                  
+                  <dl>
+                     <dt>제목</dt>
+                     <dd>
+                        <input type="text" name="articleTitle" placeholder="유효기한/분류/상품명">
+                     </dd>
+                  </dl>
+                  
+                  <dl>
+                     <dt>이미지 업로드</dt>
+                     <dd>
+                        <input type="file" name="fileName">
+                     </dd>
+                  </dl>
+                  
+               </div>
+               <div class="info">
+                  <dl>
+                     <dt>정가</dt>
+                     <dd>
+                        <input type="text" name="price" placeholder="정가 입력">
+                     </dd>
+                  </dl>
+                  <dl>
+                     <dt>할인 금액</dt>
+                     <dd>
+                        <input type="text" name="newPrice" placeholder="할인 금액">
+                     </dd>
+                  </dl>
+               </div>
+               <div class="cont">
+                  <textarea name="articleContent" placeholder="상품 소개"></textarea>
+               </div>
+               <div class="reviewBtn" style="margin-bottom: 10px;">
+                  <button type="submit" class="registerBtn">등록</button>
+                  <button type="reset" class="cancelBtn">취소</button>
+               </div>
+            </div>
+         </div>
+         <div class="bt_wrap"></div>
+      </form>
+   </div>
+   
+   <!--  
+   <footer class="footer">
         <img src="./email.png" alt="email image" width="30" height="auto">
         <span>Contact us: abcd@pknu.ac.kr</span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

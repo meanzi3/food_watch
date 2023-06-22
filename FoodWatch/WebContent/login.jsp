@@ -1,34 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.io.PrintWriter" %>
 <!doctype html>
 <html>
 <head>
-	<meta charset="charset=UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="./style.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-	<title>FoodWatch</title>
-	<style>
+    <meta charset="charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>FoodWatch</title>
+    <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('./background.png');
-            background-size: cover;
-            background-position: center;
-            color: #333333;
-            margin: 0;
-            padding: 0;
-        }   
-              
+        background-repeat: no-repeat;
+        font-family: 'Arial', sans-serif;
+        background-image: url('./background.png');
+        background-size: cover;
+        background-position: center;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        position: relative; /* body 요소에 position 속성 추가 */
+        min-height: 100vh; /* 전체 화면 높이를 최소한으로 유지 */
+    }  
+
         .container {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             background: transparent; /* 배경을 투명으로 설정하여 회색 박스를 없앰 */
-            margin: 0px 0px;
-            padding: 0px 0px;
+            margin: 0;
+            padding: 0;
         }
 
         .info_box {
@@ -104,20 +106,20 @@
             text-decoration: none;
         }
         .navbar_member a:hover{
-        	color: black;
+            color: black;
         }
 
         .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #333333;
-        color: #FFFFFF;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-    }
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333333;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
 
         .footer img {
             margin-right: 10px;
@@ -127,26 +129,24 @@
             text-align: left;
         }
     </style>
-	
+    
 </head>
 
 
 <body>
 <%
-	String userID = null;
-	if(session.getAttribute("userID") != null){
-		userID = (String) session.getAttribute("userID"); //로그인을 한 상태라면 해당 세션의 값을 userID에 넣어줌.
-		
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미 로그인되어있습니다.')");
-		script.println("location.href='index.jsp'");
-		script.println("</script>");
-	}
+    String userID = null;
+    if(session.getAttribute("userID") != null){
+        userID = (String) session.getAttribute("userID"); //로그인을 한 상태라면 해당 세션의 값을 userID에 넣어줌.
+        
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('이미 로그인되어있습니다.')");
+        script.println("location.href='index.jsp'");
+        script.println("</script>");
+    }
 %>
-	<nav class="navbar">
-		
-		<div>    </div>
+    <nav class="navbar">
         <div class="navbar_logo">
             <i class="fas fa-utensils"></i>
             <a href="index.jsp">FoodWatch</a>
@@ -156,24 +156,24 @@
             <li><a href="login.jsp">Login</a></li>
             <li><a href="join1.jsp">Join</a></li>          
         </ul>
-        
     </nav>
     
     <section>
-    	<form method="post" action="./userLoginAction.jsp" class="loginForm">
-    		<h2>Login</h2>
-      		<div class="loginID">
-        		<input type="text" class = "id" name="userId" placeholder="아이디를 입력하세요">
-      		</div>
-      		<div class="loginPW">
-        		<input type="password" class = "pw" name="userPassword" placeholder="비밀번호를 입력하세요">
-      		</div>
-      		<button type="submit" class="loginBtn">
-        	LOGIN</button>
-      		<div class="joinText">
-       			계정이 없으십니까? <a href="join1.jsp">회원가입하기</a>
-      		</div>
-    	</form>
+        <form method="post" action="./userLoginAction.jsp" class="loginForm">
+            <h2>Login</h2>
+            <div class="loginID">
+                <input type="text" class="id" name="userId" placeholder="아이디를 입력하세요">
+            </div>
+            <div class="loginPW">
+                <input type="password" class="pw" name="userPassword" placeholder="비밀번호를 입력하세요">
+            </div>
+            <button type="submit" class="loginBtn">
+                LOGIN
+            </button>
+            <div class="joinText">
+                계정이 없으십니까? <a href="join1.jsp">회원가입하기</a>
+            </div>
+        </form>
     </section>
     
     <footer class="footer">

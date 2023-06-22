@@ -16,14 +16,17 @@
 	<title>FoodWatch</title>
 	<style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('./background.png');
-            background-size: cover;
-            background-position: center;
-            color: #333333;
-            margin: 0;
-            padding: 0;
-        }   
+        background-repeat: no-repeat;
+        font-family: 'Arial', sans-serif;
+        background-image: url('./background.png');
+        background-size: cover;
+        background-position: center;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        position: relative; /* body 요소에 position 속성 추가 */
+        min-height: 100vh; /* 전체 화면 높이를 최소한으로 유지 */
+    }
               
         .container {
             display: flex;
@@ -109,26 +112,6 @@
         }
         .navbar_member a:hover{
         	color: black;
-        }
-
-        .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #333333;
-        color: #FFFFFF;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-    }
-
-        .footer img {
-            margin-right: 10px;
-        }
-
-        .footer span {
-            text-align: left;
         }
     </style>
 </head>
@@ -228,12 +211,12 @@
     	</div>	
     </div>
     
-    <footer class="footer">
+    <!-- <footer class="footer">
         <img src="./email.png" alt="email image" width="30" height="auto">
         <span>Contact us: abcd@pknu.ac.kr</span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <img src="./call.png" alt="call image" width="30" height="auto">
         <span>010-1234-5678</span>
-    </footer>
+    </footer> -->
 </body>
 </html>

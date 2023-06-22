@@ -13,15 +13,17 @@
 	<title>FoodWatch</title>
 	<style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('./background.png');
-            background-size: cover;
-            background-position: center;
-            color: #333333;
-            margin: 0;
-            padding: 0;
-        }   
-              
+        background-repeat: no-repeat;
+        font-family: 'Arial', sans-serif;
+        background-image: url('./background.png');
+        background-size: cover;
+        background-position: center;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        position: relative; /* body 요소에 position 속성 추가 */
+        min-height: 100vh; /* 전체 화면 높이를 최소한으로 유지 */
+    }
         .container {
             display: flex;
             align-items: center;
