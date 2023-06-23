@@ -25,7 +25,7 @@ public class ArticleDAO {
       }
    }
    
-   // 寃뚯떆湲   벐湲 
+   // 게시글 작성 함수 
    public int write(ArticleBean article) {
       String SQL = "INSERT INTO ARTICLE VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       try {
@@ -44,10 +44,10 @@ public class ArticleDAO {
       } catch(Exception e) {
          e.printStackTrace();
       }
-      return -1; //  뜲 씠 꽣踰좎씠 뒪  삤瑜 
+      return -1; //  데이터베이스 오류 
    }
    
-   // DB 뿉 꽌    옣 맂 寃뚯떆湲  由ъ뒪 듃瑜  遺덈윭   arrayList濡  諛섑솚
+   // DB에 저장된 게시글 리스트를 arrayList로 받아오는 함수
       public ArrayList<ArticleBean> getList(int pageNumber){
          String SQL = "SELECT * FROM ARTICLE WHERE articleId < ? ORDER BY articleId DESC LIMIT 15";
          ArrayList<ArticleBean> list = new ArrayList<ArticleBean>();
@@ -73,10 +73,10 @@ public class ArticleDAO {
          }catch(Exception e) {
             e.printStackTrace();
          }
-         return list;
+         return list; // 리스트 반환
       }
    
-   // DB 뿉    옣 맂  빐 떦 id 쓽 寃뚯떆湲  쓣 get
+   // DB에 저장된 해당 id의 게시글을 get하는 함수
    public ArticleBean getArticle(int articleId) {
       String SQL = "SELECT * FROM Article WHERE articleId = ?";
       try {
@@ -101,10 +101,10 @@ public class ArticleDAO {
       }catch(Exception e) {
          e.printStackTrace();
       }
-      return null; //  빐 떦 id 쓽 寃뚯떆湲  씠  뾾 쓣  븣
+      return null; //  해당 id의 게시글이 없을 때 null 반환
    }
    
-   // 寃뚯떆湲   닔 젙  븿 닔
+   // 게시글 수정 함수
    public int update(ArticleBean article) {
       String SQL = "UPDATE ARTICLE SET articleTitle = ?, articleContent = ?, storeName = ?, storeAddress = ?, price = ?, newPrice = ?, category = ?, sold = ?, fileName = ? WHERE articleId = ?";
       try {
@@ -123,10 +123,10 @@ public class ArticleDAO {
       } catch(Exception e) {
          e.printStackTrace();
       }
-      return -1; //  뜲 씠 꽣踰좎씠 뒪  삤瑜 
+      return -1; // 데이터베이스 오류
    }
    
-   // 寃뚯떆湲   궘 젣  븿 닔
+   // 게시글 삭제 함수
    public int delete(int articleId) {
       String SQL = "DELETE FROM ARTICLE WHERE articleId = ?";
       try {
@@ -136,6 +136,6 @@ public class ArticleDAO {
       }catch(Exception e) {
          e.printStackTrace();
       }
-      return -1; //  뜲 씠 꽣踰좎씠 뒪  삤瑜 
+      return -1; //  데이터베이스 오류
    }
 }

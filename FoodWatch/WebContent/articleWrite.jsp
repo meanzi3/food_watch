@@ -142,7 +142,7 @@
       String userID = null;
    if (session.getAttribute("userID") != null) {
       userID = (String) session.getAttribute("userID"); //로그인을 한 상태라면 해당 세션의 값을 userID에 넣어줌.
-   }
+   } 
    if(userID == null){
       PrintWriter script = response.getWriter();
       script.println("<script>");
@@ -151,7 +151,13 @@
       script.println("</script>");
    }
    UserBean userBean = new UserDAO().getUser(userID);
-   if(userBean.getUserType() != 1){ // 기업회원이 아니라면
+   if(userBean == null){
+	   PrintWriter script = response.getWriter();
+	      script.println("<script>");
+	      script.println("alert('로그인이 필요합니다.')");
+	      script.println("location.href='login.jsp'");
+	      script.println("</script>");
+   }else if(userBean.getUserType() != 1){ // 기업회원이 아니라면
       PrintWriter script = response.getWriter();
       script.println("<script>");
       script.println("alert('개인회원은 글을 작성할 수 없습니다.')");
@@ -269,14 +275,5 @@
          <div class="bt_wrap"></div>
       </form>
    </div>
-   
-   <!--  
-   <footer class="footer">
-        <img src="./email.png" alt="email image" width="30" height="auto">
-        <span>Contact us: abcd@pknu.ac.kr</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <img src="./call.png" alt="call image" width="30" height="auto">
-        <span>010-1234-5678</span>
-    </footer> -->
 </body>
 </html>

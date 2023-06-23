@@ -53,15 +53,15 @@ public class UserDAO {
 			
 			if(rs.next()) {
 				if(rs.getString(1).equals(userPassword)) {
-					return 1; // �α��� ����
+					return 1; // 로그인 성공
 				} else {
-					return 0; // ��й�ȣ�� Ʋ��
+					return 0; // 틀린 비밀번호를 입력하였을 때
 				}
-			} return -1; // ���̵� Ʋ��
+			} return -1; // 존재하지 않는 id일 때
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -2; // �����ͺ��̽� ����
+		return -2; // 데이터베이스 오류
 	}
 	
 	// 회원 정보 반환 함수
@@ -85,6 +85,6 @@ public class UserDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null; // 해당 id 의 user가 없을 떄
+		return null; // 해당 id 의 user가 없을 떄 null 반환
 	}
 }

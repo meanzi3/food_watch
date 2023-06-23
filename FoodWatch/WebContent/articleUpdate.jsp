@@ -293,13 +293,5 @@
 			<div class="bt_wrap"></div>
 		</form>
 	</div>
-	<!-- 
-	<footer class="footer">
-        <img src="./email.png" alt="email image" width="30" height="auto">
-        <span>Contact us: abcd@pknu.ac.kr</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <img src="./call.png" alt="call image" width="30" height="auto">
-        <span>010-1234-5678</span>
-    </footer> -->
 </body>
 </html>

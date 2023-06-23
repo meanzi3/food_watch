@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>음식점평가 웹사이트</title>
+<title>FoodWatch</title>
 </head>
 <body>
 	<%

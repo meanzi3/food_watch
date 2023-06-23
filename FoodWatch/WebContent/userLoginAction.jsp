@@ -9,7 +9,7 @@
 <html>																				
 <head>											
 <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
-<title>음식점 평가 웹사이트</title>
+<title>FoodWatch</title>
 </head>
 <body>
 	<%

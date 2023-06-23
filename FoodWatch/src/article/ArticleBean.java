@@ -11,7 +11,7 @@ public class ArticleBean {
    private int newPrice;
    private String category; 
    private String ownerId;
-   private Integer sold; //  뙏 졇 뒗吏  泥댄겕 ->  뙏 졇 쑝硫  1
+   private Integer sold; //  상품 판매 여부 -> 판매 중이면 0 / 판매 완료면 1
    private String fileName;
    
    public int getArticleId() {

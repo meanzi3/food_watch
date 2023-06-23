@@ -8,7 +8,7 @@ public class UserBean {
 	private String userEmail;
 	private String userPhoneNumber;
 	private String userSex;
-	private Integer userType; // CUSTOMER(0) or OWNER(1)
+	private Integer userType; // 일반회원(0) or 기업회원(1)
 	
 	
 	public String getUserId() {

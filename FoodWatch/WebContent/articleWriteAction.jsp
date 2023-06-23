@@ -9,7 +9,6 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="java.io.PrintWriter" %>
 <jsp:useBean id="article" class="article.ArticleBean" />
-<%-- <jsp:setProperty property="*" name="article"/> --%>
 <html>																				
 <head>											
 <meta http-equiv="Content-Type" content="text/html"; charset= "UTF-8">
@@ -86,11 +85,6 @@
 					script.println("alert('게시글이 등록되었습니다.')");
 					script.println("location.href = 'articleList.jsp'");
 					script.println("</script>");
-					if(fileName != null){
-						/* File oldFile = new File(realFolder+"\\"+fileName);
-						File newFile = new File(realFolder+"\\"+articleTitle+"사진.jpg");
-						oldFile.renameTo(newFile); */
-					}
 				}
 			}
 		}
